@@ -1,0 +1,18 @@
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+
+ 
+  
+})
+
+
+app.post('/registration', (req, res) => {
+    console.log('here is an example')
+    console.log('Got body:', req.body);
+    res.sendStatus(200);
+});
+
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})

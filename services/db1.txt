@@ -1,0 +1,42 @@
+// Connect to the database
+client.connect();
+
+//Simple query example
+client.query('SELECT * FROM eventregistration', (err, result) => {
+  if (err) {
+    console.error('Error executing query', err);
+    client.end(); // Close the connection
+    return;
+  }
+
+  // Print the results
+  console.log('Query result:', result.rows);
+
+  // Close the connection
+  client.end();
+});
+
+const newData = {
+    name: 'John Doe',
+    event: ghf,
+    amount: '500',
+    id:'5'
+
+  };
+  
+  // SQL query to insert data into the table
+  const insertQuery = 'INSERT INTO eventregistration (id,event,amount,name) VALUES ($1, $2, $3, $4) RETURNING *'
+  // Execute the query with the data
+  client.query(insertQuery, [newData.id, newData.event, newData.amount, newData.name], (err, result) => {
+    if (err) {
+      console.error('Error executing query', err);
+      client.end(); // Close the connection
+      return;
+    }
+  
+    // Print the inserted data
+    console.log('Inserted data:', result.rows[0]);
+  
+    // Close the connection
+    client.end();
+  });
